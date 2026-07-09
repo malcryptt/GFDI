@@ -553,10 +553,23 @@ button:focus-visible {
     .site-header {
         background-color: var(--c-green-dark);
         position: relative;
+        padding: 1.5rem 0;
+    }
+
+    .header-inner {
+        flex-direction: column;
+        gap: 1.5rem;
     }
 
     .nav-links {
-        display: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
     }
 
     .footer-inner {
