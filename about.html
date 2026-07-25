@@ -240,28 +240,40 @@
             cards.push(card);
         });
 
-        // Dot indicators
+        // 3-dot traveling indicator
         const dotsContainer = document.createElement('div');
         dotsContainer.className = 'team-dots';
-        const dots = team.map((_, i) => {
-            const dot = document.createElement('button');
-            dot.className = 'team-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', `Go to team member ${i + 1}`);
-            dot.addEventListener('click', () => {
-                cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-            });
-            dotsContainer.appendChild(dot);
-            return dot;
+        // Always exactly 3 dots
+        const NUM_DOTS = 3;
+        const dotEls = Array.from({ length: NUM_DOTS }, () => {
+            const d = document.createElement('span');
+            d.className = 'team-dot';
+            dotsContainer.appendChild(d);
+            return d;
         });
+        dotEls[1].classList.add('active'); // center starts active
         grid.parentElement.insertBefore(dotsContainer, grid.nextSibling);
 
-        // Sync active dot to scroll position
-        const allDots = dotsContainer.querySelectorAll('.team-dot');
+        // Sync dots to scroll: the center dot = current card, flanking dots shrink at edges
         grid.addEventListener('scroll', () => {
-            const scrollLeft = grid.scrollLeft;
-            const cardWidth = cards[0] ? cards[0].offsetWidth + 32 : 1; // 32 = gap
-            const activeIndex = Math.round(scrollLeft / cardWidth);
-            allDots.forEach((d, i) => d.classList.toggle('active', i === activeIndex));
+            const cardWidth = cards[0] ? cards[0].offsetWidth + 32 : 1;
+            const activeIndex = Math.min(
+                Math.round(grid.scrollLeft / cardWidth),
+                cards.length - 1
+            );
+            const total = cards.length;
+            const progress = activeIndex / (total - 1); // 0 → 1
+
+            // left dot shrinks as we move left; right dot shrinks as we move right
+            const leftScale = 0.5 + 0.5 * (1 - progress);   // big at start, small at end
+            const rightScale = 0.5 + 0.5 * progress;           // small at start, big at end
+
+            dotEls[0].style.transform = `scale(${leftScale})`;
+            dotEls[1].style.transform = 'scale(1.35)'; // center always full
+            dotEls[2].style.transform = `scale(${rightScale})`;
+
+            dotEls[0].style.opacity = 0.35 + 0.65 * (1 - progress);
+            dotEls[2].style.opacity = 0.35 + 0.65 * progress;
         });
     </script>
 </body>

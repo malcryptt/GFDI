@@ -785,24 +785,28 @@ a {
 .team-dots {
     display: flex;
     justify-content: center;
-    gap: 0.6rem;
+    align-items: center;
+    gap: 0.55rem;
     padding-top: 1.25rem;
 }
 
 .team-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: rgba(247, 245, 239, 0.2);
-    border: 1px solid rgba(247, 245, 239, 0.15);
-    transition: background 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
+    background: var(--c-green);
+    opacity: 0.4;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform: scale(1);
+    display: inline-block;
+    border: none;
+    padding: 0;
 }
 
 .team-dot.active {
     background: var(--c-green);
-    border-color: var(--c-green);
-    transform: scale(1.25);
+    opacity: 1;
+    transform: scale(1.35);
 }
 
 .view-more-btn {
