@@ -500,6 +500,10 @@ a {
    ===================== */
 .team-section {
     background-color: var(--c-charcoal);
+    background-image: linear-gradient(to bottom, rgba(59, 62, 61, 0.92), rgba(59, 62, 61, 0.92)), url('https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--c-cream);
 }
 
@@ -646,17 +650,21 @@ a {
 .team-card-expanded-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s ease, padding 0.5s ease;
-    padding: 0 1.5rem;
-    background: rgba(59, 62, 61, 0.2);
+    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease, opacity 0.4s ease;
+    padding: 0 2rem;
+    background: rgba(40, 42, 41, 0.6);
+    border-top: 1px solid transparent;
     font-size: 0.95rem;
-    line-height: 1.6;
-    opacity: 0.9;
+    line-height: 1.7;
+    opacity: 0;
 }
 
 .team-card.expanded .team-card-expanded-content {
-    max-height: 1000px;
-    padding: 1.5rem;
+    max-height: 2000px;
+    padding: 2rem;
+    padding-top: 1.5rem;
+    opacity: 1;
+    border-top-color: rgba(247, 245, 239, 0.1);
 }
 
 /* Mobile full-screen "page" mode */
