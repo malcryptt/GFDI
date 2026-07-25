@@ -61,20 +61,26 @@
                         the ground.</p>
                 </header>
 
-                <!-- Principal Partner — visually prioritized -->
                 <div class="principal-card">
-                    <div class="principal-photo">
-                        [Photo Pending<br>Principal Partner]
+                    <div class="principal-photo"
+                        style="background-image: url('/assets/principal-partner.jpg'); background-size: cover; background-position: top center; color: transparent;">
+                        [Photo of Michael Ogunsakin]
                     </div>
                     <div class="principal-info">
                         <p class="role">Principal Partner &amp; Founder</p>
-                        <h3>[Name Pending]</h3>
-                        <p>This section is reserved for the principal partner's biography. Please provide the name,
-                            photo, and a short biography to be displayed here. The bio should cover their background in
-                            advocacy, their role in founding GFDI, and any relevant experience in human rights, law, or
-                            community development.</p>
-                        <p style="opacity:.6;font-size:.9rem;margin-top:1rem;">[Placeholder — awaiting client-supplied
-                            content]</p>
+                        <h3>Michael Olushola Ogunsakin</h3>
+                        <p>Michael Olushola Ogunsakin is the Principal Partner of Michael O. Ogunsakin & Co., an
+                            international law firm. He is a Rotarian and a life member of the Nigeria Society of
+                            International Law, as well as a member of the International Association of Human Right
+                            Lawyers, Red Cross, the Nigerian Bar Association (NBA), and the International Bar
+                            Association (IBA).</p>
+                        <p>He is the Founder & Chairman of the Board of Trustees of Gender Frontier Initiative
+                            Developments, a Non-Governmental Organization promoting and advocating for Women's and
+                            Children's rights, campaigning against Female Genital Mutilation, Child Labour, and Human
+                            Trafficking. He is also keen on assisting the less privileged in society by engaging them in
+                            community developmental projects and entrepreneurship. A Motivational Speaker and expert in
+                            business process invention and re-engineering, he holds the responsibility of driving GFDI's
+                            Corporate Strategies.</p>
                     </div>
                 </div>
 
@@ -122,14 +128,13 @@
         renderFooter();
         initScrollReveal();
 
-        // Team members data (replace with real data when supplied)
         const team = [
-            { name: '[Name Pending]', role: 'Legal Advocate', bio: 'Placeholder biography. Please supply the name, role, and background for this team member.' },
-            { name: '[Name Pending]', role: 'Field Outreach Coordinator', bio: 'Placeholder biography. Please supply the name, role, and background for this team member.' },
-            { name: '[Name Pending]', role: 'Community Liaison', bio: 'Placeholder biography. Please supply the name, role, and background for this team member.' },
-            { name: '[Name Pending]', role: 'Communications Lead', bio: 'Placeholder biography. Please supply the name, role, and background for this team member.' },
-            { name: '[Name Pending]', role: 'Counseling Support', bio: 'Placeholder biography. Please supply the name, role, and background for this team member.' },
-            { name: '[Name Pending]', role: 'Partner Relations', bio: 'Placeholder biography. Please supply the name, role, and background for this team member.' },
+            { name: 'Activist Name', role: 'Legal Advocate', snippet: 'Advocating for justice in the Nigerian legal system...', bio: 'Placeholder biography with more comprehensive details about their background in advocacy. This is the extended text the user sees upon expanding the card. Education, roles, and more involvement data belongs here.' },
+            { name: 'Activist Name', role: 'Field Outreach Coordinator', snippet: 'Connecting directly with affected communities...', bio: 'Extended biography here explaining their on-the-ground work, education, and involvement in GFDI campaigns.' },
+            { name: 'Activist Name', role: 'Community Liaison', snippet: 'Bridging the gap between the NGO and locals...', bio: 'Full background regarding their long-standing work with local leaders and community trusts.' },
+            { name: 'Activist Name', role: 'Communications Lead', snippet: 'Driving the message of GFDI across all media...', bio: 'Details about their background in communications and advocacy.' },
+            { name: 'Activist Name', role: 'Counseling Support', snippet: 'Providing therapy and safe havens for survivors...', bio: 'Detailed credentials for the counseling staff.' },
+            { name: 'Activist Name', role: 'Partner Relations', snippet: 'Managing international and local NGO partnerships...', bio: 'Extended bio regarding institutional grants and partnership relations.' }
         ];
 
         const grid = document.getElementById('team-grid');
@@ -140,10 +145,14 @@
             card.setAttribute('role', 'button');
             card.setAttribute('aria-label', `View profile: ${member.name}`);
             card.innerHTML = `
-                <div class="team-card-photo">[Photo Pending<br>${member.role}]</div>
+                <div class="team-card-photo">[Photo Pending]</div>
                 <div class="team-card-info">
-                    <h4>${member.name}</h4>
                     <span class="role">${member.role}</span>
+                    <h4>${member.name}</h4>
+                    <p class="team-card-snippet">${member.snippet}</p>
+                    <div class="team-card-overlay">
+                        <span class="view-more-btn">View More</span>
+                    </div>
                 </div>`;
             card.addEventListener('click', () => openModal(member));
             card.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(member); });
