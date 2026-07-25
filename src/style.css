@@ -500,7 +500,7 @@ a {
    ===================== */
 .team-section {
     background-color: var(--c-charcoal);
-    background-image: linear-gradient(to bottom, rgba(59, 62, 61, 0.92), rgba(59, 62, 61, 0.92)), url('https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2000&auto=format&fit=crop');
+    background-image: linear-gradient(to bottom, rgba(59, 62, 61, 0.92), rgba(59, 62, 61, 0.92)), url('https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=2000&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -659,6 +659,22 @@ a {
     opacity: 0;
 }
 
+/* On desktop, expand on hover */
+@media (min-width: 769px) {
+    .team-card:hover .team-card-expanded-content {
+        max-height: 2000px;
+        padding: 2rem;
+        padding-top: 1.5rem;
+        opacity: 1;
+        border-top-color: rgba(247, 245, 239, 0.1);
+    }
+
+    .close-expanded-btn {
+        display: none;
+    }
+}
+
+/* Fallback for JS click (if needed) */
 .team-card.expanded .team-card-expanded-content {
     max-height: 2000px;
     padding: 2rem;
@@ -695,25 +711,8 @@ a {
     }
 }
 
-/* Hover overlay button */
+/* Hover overlay (disabled since card expands on hover directly) */
 .team-card-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(59, 62, 61, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.team-card:not(.expanded):hover .team-card-overlay {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.team-card.expanded .team-card-overlay {
     display: none;
 }
 

@@ -129,12 +129,12 @@
         initScrollReveal();
 
         const team = [
-            { name: 'Activist Name', role: 'Legal Advocate', snippet: 'Advocating for justice in the Nigerian legal system...', bio: 'Placeholder biography with more comprehensive details about their background in advocacy. This is the extended text the user sees upon expanding the card. Education, roles, and more involvement data belongs here.' },
-            { name: 'Activist Name', role: 'Field Outreach Coordinator', snippet: 'Connecting directly with affected communities...', bio: 'Extended biography here explaining their on-the-ground work, education, and involvement in GFDI campaigns.' },
-            { name: 'Activist Name', role: 'Community Liaison', snippet: 'Bridging the gap between the NGO and locals...', bio: 'Full background regarding their long-standing work with local leaders and community trusts.' },
-            { name: 'Activist Name', role: 'Communications Lead', snippet: 'Driving the message of GFDI across all media...', bio: 'Details about their background in communications and advocacy.' },
-            { name: 'Activist Name', role: 'Counseling Support', snippet: 'Providing therapy and safe havens for survivors...', bio: 'Detailed credentials for the counseling staff.' },
-            { name: 'Activist Name', role: 'Partner Relations', snippet: 'Managing international and local NGO partnerships...', bio: 'Extended bio regarding institutional grants and partnership relations.' }
+            { name: 'Activist Name', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop', role: 'Legal Advocate', snippet: 'Advocating for justice in the Nigerian legal system...', bio: 'Placeholder biography with more comprehensive details about their background in advocacy. This is the extended text the user sees upon expanding the card. Education, roles, and more involvement data belongs here.' },
+            { name: 'Activist Name', photo: 'https://images.unsplash.com/photo-1531123897727-8f129e1bfd8c?q=80&w=400&auto=format&fit=crop', role: 'Field Outreach Coordinator', snippet: 'Connecting directly with affected communities...', bio: 'Extended biography here explaining their on-the-ground work, education, and involvement in GFDI campaigns.' },
+            { name: 'Activist Name', photo: 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=400&auto=format&fit=crop', role: 'Community Liaison', snippet: 'Bridging the gap between the NGO and locals...', bio: 'Full background regarding their long-standing work with local leaders and community trusts.' },
+            { name: 'Activist Name', photo: 'https://images.unsplash.com/photo-1589156280159-27698a70f29e?q=80&w=400&auto=format&fit=crop', role: 'Communications Lead', snippet: 'Driving the message of GFDI across all media...', bio: 'Details about their background in communications and advocacy.' },
+            { name: 'Activist Name', photo: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=400&auto=format&fit=crop', role: 'Counseling Support', snippet: 'Providing therapy and safe havens for survivors...', bio: 'Detailed credentials for the counseling staff.' },
+            { name: 'Activist Name', photo: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=400&auto=format&fit=crop', role: 'Partner Relations', snippet: 'Managing international and local NGO partnerships...', bio: 'Extended bio regarding institutional grants and partnership relations.' }
         ];
 
         const grid = document.getElementById('team-grid');
@@ -146,14 +146,11 @@
             card.setAttribute('aria-expanded', 'false');
             card.innerHTML = `
                 <div class="team-card-visible">
-                    <div class="team-card-photo">[Photo Pending]</div>
+                    <img src="${member.photo}" alt="${member.name}" class="team-card-photo" style="padding:0; background:none;">
                     <div class="team-card-info">
                         <span class="role">${member.role}</span>
                         <h4>${member.name}</h4>
                         <p class="team-card-snippet">${member.snippet}</p>
-                        <div class="team-card-overlay">
-                            <span class="view-more-btn">View More</span>
-                        </div>
                     </div>
                 </div>
                 <div class="team-card-expanded-content">
@@ -165,7 +162,9 @@
                 </div>`;
 
             card.addEventListener('click', (e) => {
-                // If they click the close button, close it
+                // Clicking is primarily for mobile devices to lock scrolling open
+                if (window.innerWidth > 768) return;
+
                 if (e.target.closest('.close-expanded-btn')) {
                     card.classList.remove('expanded');
                     card.setAttribute('aria-expanded', 'false');
@@ -174,14 +173,9 @@
                     return;
                 }
 
-                // Toggle expansion
                 const isExpanded = card.classList.toggle('expanded');
                 card.setAttribute('aria-expanded', isExpanded);
-
-                // If on mobile layout and expanded, we lock the body scroll
-                if (window.innerWidth <= 768) {
-                    document.body.style.overflow = isExpanded ? 'hidden' : '';
-                }
+                document.body.style.overflow = isExpanded ? 'hidden' : '';
             });
             card.addEventListener('keydown', e => { if (e.key === 'Enter') card.click(); });
             grid.appendChild(card);
