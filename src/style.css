@@ -556,6 +556,7 @@ a {
     scroll-snap-type: x mandatory;
     scrollbar-width: thin;
     scrollbar-color: rgba(247, 245, 239, 0.3) rgba(247, 245, 239, 0.05);
+    align-items: flex-start;
 }
 
 .team-grid::-webkit-scrollbar {
@@ -573,31 +574,33 @@ a {
 }
 
 .team-card {
-    flex: 0 0 280px;
+    flex: 0 0 calc(100% - 2rem);
+    max-width: 500px;
     scroll-snap-align: start;
     cursor: pointer;
     border-radius: 3px;
     overflow: hidden;
     background: rgba(247, 245, 239, 0.05);
     border: 1px solid rgba(247, 245, 239, 0.08);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, max-height 0.5s ease;
     display: flex;
     flex-direction: column;
 }
 
+.team-card-visible {
+    display: flex;
+    flex-direction: row;
+}
+
 .team-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     border-color: rgba(247, 245, 239, 0.25);
 }
 
-.team-card:hover .team-card-overlay {
-    opacity: 1;
-    pointer-events: all;
-}
-
 .team-card-photo {
-    width: 100%;
-    aspect-ratio: 1;
+    width: 150px;
+    flex-shrink: 0;
+    align-self: stretch;
     object-fit: cover;
     background: rgba(247, 245, 239, 0.08);
     display: flex;
@@ -639,6 +642,52 @@ a {
     margin-top: 0.5rem;
 }
 
+/* Expanding functionality */
+.team-card-expanded-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    padding: 0 1.5rem;
+    background: rgba(59, 62, 61, 0.2);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.team-card.expanded .team-card-expanded-content {
+    max-height: 1000px;
+    padding: 1.5rem;
+}
+
+/* Mobile full-screen "page" mode */
+@media (max-width: 768px) {
+    .team-card-visible {
+        flex-direction: column;
+    }
+
+    .team-card-photo {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+
+    .team-card.expanded {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        max-width: 100vw;
+        border-radius: 0;
+        background: var(--c-charcoal);
+        overflow-y: auto;
+        transform: none !important;
+    }
+
+    .team-card.expanded .team-card-expanded-content {
+        max-height: none;
+        padding-bottom: 4rem;
+    }
+}
+
+/* Hover overlay button */
 .team-card-overlay {
     position: absolute;
     inset: 0;
@@ -651,13 +700,21 @@ a {
     transition: opacity 0.3s ease;
 }
 
+.team-card:not(.expanded):hover .team-card-overlay {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.team-card.expanded .team-card-overlay {
+    display: none;
+}
+
 .view-more-btn {
     display: inline-block;
     padding: 0.6rem 1.25rem;
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
     border: 1.5px solid var(--c-green);
     border-radius: 2px;
     color: var(--c-green);

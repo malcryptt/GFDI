@@ -63,7 +63,7 @@
 
                 <div class="principal-card">
                     <div class="principal-photo"
-                        style="background-image: url('/assets/principal-partner.jpg'); background-size: cover; background-position: top center; color: transparent;">
+                        style="background-image: url('/assets/partner_new.jpg'); background-size: cover; background-position: top center; color: transparent;">
                         [Photo of Michael Ogunsakin]
                     </div>
                     <div class="principal-info">
@@ -143,41 +143,51 @@
             card.className = 'team-card';
             card.setAttribute('tabindex', '0');
             card.setAttribute('role', 'button');
-            card.setAttribute('aria-label', `View profile: ${member.name}`);
+            card.setAttribute('aria-expanded', 'false');
             card.innerHTML = `
-                <div class="team-card-photo">[Photo Pending]</div>
-                <div class="team-card-info">
-                    <span class="role">${member.role}</span>
-                    <h4>${member.name}</h4>
-                    <p class="team-card-snippet">${member.snippet}</p>
-                    <div class="team-card-overlay">
-                        <span class="view-more-btn">View More</span>
+                <div class="team-card-visible">
+                    <div class="team-card-photo">[Photo Pending]</div>
+                    <div class="team-card-info">
+                        <span class="role">${member.role}</span>
+                        <h4>${member.name}</h4>
+                        <p class="team-card-snippet">${member.snippet}</p>
+                        <div class="team-card-overlay">
+                            <span class="view-more-btn">View More</span>
+                        </div>
                     </div>
+                </div>
+                <div class="team-card-expanded-content">
+                    <div style="margin-bottom: 2rem;">
+                        <button class="close-expanded-btn" style="float: right; background: none; border: 1px solid rgba(247,245,239,0.2); color: var(--c-cream); padding: 0.4rem 0.9rem; cursor: pointer; border-radius: 2px;">Close ✕</button>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">${member.name}</h3>
+                    <p style="font-size: 0.95rem;">${member.bio}</p>
                 </div>`;
-            card.addEventListener('click', () => openModal(member));
-            card.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(member); });
+
+            card.addEventListener('click', (e) => {
+                // If they click the close button, close it
+                if (e.target.closest('.close-expanded-btn')) {
+                    card.classList.remove('expanded');
+                    card.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                    e.stopPropagation();
+                    return;
+                }
+
+                // Toggle expansion
+                const isExpanded = card.classList.toggle('expanded');
+                card.setAttribute('aria-expanded', isExpanded);
+
+                // If on mobile layout and expanded, we lock the body scroll
+                if (window.innerWidth <= 768) {
+                    document.body.style.overflow = isExpanded ? 'hidden' : '';
+                }
+            });
+            card.addEventListener('keydown', e => { if (e.key === 'Enter') card.click(); });
             grid.appendChild(card);
         });
 
-        const overlay = document.getElementById('profile-overlay');
-        const closeBtn = document.getElementById('modal-close-btn');
-
-        function openModal(member) {
-            document.getElementById('modal-role').textContent = member.role;
-            document.getElementById('modal-name').textContent = member.name;
-            document.getElementById('modal-bio').textContent = member.bio;
-            overlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            overlay.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        closeBtn.addEventListener('click', closeModal);
-        overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+        // The profile modal code is now replaced by the inline expanding cards.
     </script>
 </body>
 
