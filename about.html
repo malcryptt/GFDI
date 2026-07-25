@@ -76,7 +76,7 @@
                             Lawyers, Red Cross, the Nigerian Bar Association (NBA), and the International Bar
                             Association (IBA).</p>
 
-                        <span class="principal-tap-hint">Tap to read more ▾</span>
+                        <span class="principal-tap-hint" id="principal-tap-hint">Tap to read more ▾</span>
                         <div class="principal-expanded-content">
                             <p>He is the Founder & Chairman of the Board of Trustees of Gender Frontier Initiative
                                 Developments, a Non-Governmental Organization promoting and advocating for Women's and
@@ -137,16 +137,45 @@
         renderFooter();
         initScrollReveal();
 
-        // Mobile expanded interaction for Principal Partner
+        const isMobile = () => window.innerWidth <= 768;
+
+        // Floating hint helper — injects a pill that fades out via CSS animation
+        function showFloatHint(container, text) {
+            if (!isMobile()) return;
+            const existing = container.querySelector('.card-float-hint');
+            if (existing) existing.remove();
+            const hint = document.createElement('span');
+            hint.className = 'card-float-hint';
+            hint.textContent = text;
+            container.style.position = 'relative';
+            container.appendChild(hint);
+            // Remove from DOM after animation ends so it can re-trigger on next scroll-in
+            hint.addEventListener('animationend', () => hint.remove());
+        }
+
+        // Principal Partner: show floating hint when card comes into view on mobile
         const pCard = document.getElementById('principal-card-elem');
-        if (pCard) {
+        const pPhoto = pCard ? pCard.querySelector('.principal-photo') : null;
+        if (pCard && pPhoto) {
+            const pObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        showFloatHint(pPhoto, 'Tap to read more ▾');
+                    }
+                });
+            }, { threshold: 0.5 });
+            pObserver.observe(pCard);
+
             pCard.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
+                if (isMobile()) {
                     pCard.classList.toggle('expanded');
+                    const hint = pPhoto.querySelector('.card-float-hint');
+                    if (hint) hint.remove();
                 }
             });
         }
 
+        // Team data
         const team = [
             { name: 'Activist Name', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop', role: 'Legal Advocate', snippet: 'Advocating for justice in the Nigerian legal system...', bio: 'Placeholder biography with more comprehensive details about their background in advocacy. This is the extended text the user sees upon expanding the card. Education, roles, and more involvement data belongs here.' },
             { name: 'Activist Name', photo: 'https://images.unsplash.com/photo-1531123897727-8f129e1bfd8c?q=80&w=400&auto=format&fit=crop', role: 'Field Outreach Coordinator', snippet: 'Connecting directly with affected communities...', bio: 'Extended biography here explaining their on-the-ground work, education, and involvement in GFDI campaigns.' },
@@ -157,6 +186,8 @@
         ];
 
         const grid = document.getElementById('team-grid');
+        const cards = [];
+
         team.forEach((member, i) => {
             const card = document.createElement('div');
             card.className = 'team-card';
@@ -164,7 +195,7 @@
             card.setAttribute('role', 'button');
             card.setAttribute('aria-expanded', 'false');
             card.innerHTML = `
-                <div class="team-card-visible">
+                <div class="team-card-visible" style="position:relative;">
                     <img src="${member.photo}" alt="${member.name}" class="team-card-photo" style="padding:0; background:none;">
                     <div class="team-card-info">
                         <span class="role">${member.role}</span>
@@ -180,10 +211,19 @@
                     <p style="font-size: 0.95rem;">${member.bio}</p>
                 </div>`;
 
-            card.addEventListener('click', (e) => {
-                // Clicking is primarily for mobile devices to lock scrolling open
-                if (window.innerWidth > 768) return;
+            // Floating hint via IntersectionObserver on mobile
+            const visibleSection = card.querySelector('.team-card-visible');
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !card.classList.contains('expanded')) {
+                        showFloatHint(visibleSection, 'Tap to view ▾');
+                    }
+                });
+            }, { threshold: 0.6 });
+            cardObserver.observe(card);
 
+            card.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
                 if (e.target.closest('.close-expanded-btn')) {
                     card.classList.remove('expanded');
                     card.setAttribute('aria-expanded', 'false');
@@ -191,16 +231,38 @@
                     e.stopPropagation();
                     return;
                 }
-
                 const isExpanded = card.classList.toggle('expanded');
                 card.setAttribute('aria-expanded', isExpanded);
                 document.body.style.overflow = isExpanded ? 'hidden' : '';
             });
             card.addEventListener('keydown', e => { if (e.key === 'Enter') card.click(); });
             grid.appendChild(card);
+            cards.push(card);
         });
 
-        // The profile modal code is now replaced by the inline expanding cards.
+        // Dot indicators
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = 'team-dots';
+        const dots = team.map((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'team-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', `Go to team member ${i + 1}`);
+            dot.addEventListener('click', () => {
+                cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            });
+            dotsContainer.appendChild(dot);
+            return dot;
+        });
+        grid.parentElement.insertBefore(dotsContainer, grid.nextSibling);
+
+        // Sync active dot to scroll position
+        const allDots = dotsContainer.querySelectorAll('.team-dot');
+        grid.addEventListener('scroll', () => {
+            const scrollLeft = grid.scrollLeft;
+            const cardWidth = cards[0] ? cards[0].offsetWidth + 32 : 1; // 32 = gap
+            const activeIndex = Math.round(scrollLeft / cardWidth);
+            allDots.forEach((d, i) => d.classList.toggle('active', i === activeIndex));
+        });
     </script>
 </body>
 

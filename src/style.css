@@ -572,29 +572,30 @@ a {
     padding-top: 1rem;
 }
 
-/* Mobile tap hint for principal card */
-.principal-tap-hint {
+/* Floating hint button — injected by JS on mobile */
+.card-float-hint {
     display: none;
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--c-green);
-    border: 1px solid var(--c-green);
-    padding: 0.5rem 1.2rem;
-    border-radius: 2px;
-    text-align: center;
-    width: fit-content;
 }
 
 @media (max-width: 768px) {
-    .principal-tap-hint {
+    .card-float-hint {
         display: inline-block;
-    }
-
-    .principal-card.expanded .principal-tap-hint {
-        display: none;
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        background: rgba(30, 80, 55, 0.92);
+        color: var(--c-cream);
+        padding: 0.5rem 1.2rem;
+        border-radius: 50px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+        animation: hintFade 2.5s ease forwards;
+        pointer-events: none;
     }
 }
 
@@ -738,7 +739,27 @@ a {
     border-top-color: rgba(247, 245, 239, 0.1);
 }
 
-/* Mobile full-screen "page" mode */
+/* Mobile full-screen page mode */
+.team-card.expanded {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    max-width: 100vw;
+    border-radius: 0;
+    background: var(--c-charcoal);
+    overflow-y: auto;
+    transform: none !important;
+    flex: 1 1 100%;
+}
+
+.team-card.expanded .team-card-expanded-content {
+    max-height: none;
+    padding: 2rem;
+    padding-bottom: 4rem;
+    opacity: 1;
+    border-top-color: rgba(247, 245, 239, 0.1);
+}
+
 @media (max-width: 768px) {
     .team-card {
         flex: 0 0 85vw;
@@ -753,47 +774,35 @@ a {
         width: 100%;
         aspect-ratio: 16/9;
     }
-
-    /* Add a visible 'Tap to View' prompt on mobile */
-    .team-card-snippet::after {
-        content: 'Tap to view more ▾';
-        display: block;
-        margin-top: 0.75rem;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: var(--c-green);
-    }
-
-    .team-card.expanded .team-card-snippet::after {
-        display: none;
-    }
-
-    .team-card.expanded {
-        position: fixed;
-        inset: 0;
-        z-index: 1000;
-        max-width: 100vw;
-        border-radius: 0;
-        background: var(--c-charcoal);
-        overflow-y: auto;
-        transform: none !important;
-        flex: 1 1 100%;
-    }
-
-    .team-card.expanded .team-card-expanded-content {
-        max-height: none;
-        padding: 2rem;
-        padding-bottom: 4rem;
-        opacity: 1;
-        border-top-color: rgba(247, 245, 239, 0.1);
-    }
 }
 
 /* Hover overlay (disabled since card expands on hover directly) */
 .team-card-overlay {
     display: none;
+}
+
+/* Scroll dot indicators */
+.team-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    padding-top: 1.25rem;
+}
+
+.team-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(247, 245, 239, 0.2);
+    border: 1px solid rgba(247, 245, 239, 0.15);
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.team-dot.active {
+    background: var(--c-green);
+    border-color: var(--c-green);
+    transform: scale(1.25);
 }
 
 .view-more-btn {
