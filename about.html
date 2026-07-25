@@ -61,7 +61,7 @@
                         the ground.</p>
                 </header>
 
-                <div class="principal-card">
+                <div class="principal-card" id="principal-card-elem">
                     <div class="principal-photo"
                         style="background-image: url('/assets/partner_new.jpg'); background-size: cover; background-position: top center; color: transparent;">
                         [Photo of Michael Ogunsakin]
@@ -69,18 +69,26 @@
                     <div class="principal-info">
                         <p class="role">Principal Partner &amp; Founder</p>
                         <h3>Michael Olushola Ogunsakin</h3>
-                        <p>Michael Olushola Ogunsakin is the Principal Partner of Michael O. Ogunsakin & Co., an
+                        <p class="team-card-snippet">Michael Olushola Ogunsakin is the Principal Partner of Michael O.
+                            Ogunsakin & Co., an
                             international law firm. He is a Rotarian and a life member of the Nigeria Society of
                             International Law, as well as a member of the International Association of Human Right
                             Lawyers, Red Cross, the Nigerian Bar Association (NBA), and the International Bar
                             Association (IBA).</p>
-                        <p>He is the Founder & Chairman of the Board of Trustees of Gender Frontier Initiative
-                            Developments, a Non-Governmental Organization promoting and advocating for Women's and
-                            Children's rights, campaigning against Female Genital Mutilation, Child Labour, and Human
-                            Trafficking. He is also keen on assisting the less privileged in society by engaging them in
-                            community developmental projects and entrepreneurship. A Motivational Speaker and expert in
-                            business process invention and re-engineering, he holds the responsibility of driving GFDI's
-                            Corporate Strategies.</p>
+
+                        <div class="principal-expanded-content">
+                            <p>He is the Founder & Chairman of the Board of Trustees of Gender Frontier Initiative
+                                Developments, a Non-Governmental Organization promoting and advocating for Women's and
+                                Children's rights, campaigning against Female Genital Mutilation, Child Labour, and
+                                Human
+                                Trafficking. He is also keen on assisting the less privileged in society by engaging
+                                them in
+                                community developmental projects and entrepreneurship. A Motivational Speaker and expert
+                                in
+                                business process invention and re-engineering, he holds the responsibility of driving
+                                GFDI's
+                                Corporate Strategies.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -127,6 +135,16 @@
         renderHeader('about');
         renderFooter();
         initScrollReveal();
+
+        // Mobile expanded interaction for Principal Partner
+        const pCard = document.getElementById('principal-card-elem');
+        if (pCard) {
+            pCard.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    pCard.classList.toggle('expanded');
+                }
+            });
+        }
 
         const team = [
             { name: 'Activist Name', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop', role: 'Legal Advocate', snippet: 'Advocating for justice in the Nigerian legal system...', bio: 'Placeholder biography with more comprehensive details about their background in advocacy. This is the extended text the user sees upon expanding the card. Education, roles, and more involvement data belongs here.' },
