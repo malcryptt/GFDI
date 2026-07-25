@@ -196,7 +196,9 @@
             card.setAttribute('aria-expanded', 'false');
             card.innerHTML = `
                 <div class="team-card-visible" style="position:relative;">
-                    <img src="${member.photo}" alt="${member.name}" class="team-card-photo" style="padding:0; background:none;">
+                    <div class="team-photo-wrapper">
+                        <img src="${member.photo}" alt="${member.name}" class="team-card-photo" style="padding:0; background:none;">
+                    </div>
                     <div class="team-card-info">
                         <span class="role">${member.role}</span>
                         <h4>${member.name}</h4>
@@ -212,11 +214,11 @@
                 </div>`;
 
             // Floating hint via IntersectionObserver on mobile
-            const visibleSection = card.querySelector('.team-card-visible');
+            const wrapper = card.querySelector('.team-photo-wrapper');
             const cardObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !card.classList.contains('expanded')) {
-                        showFloatHint(visibleSection, 'Tap to view ▾');
+                        showFloatHint(wrapper, 'Tap to view ▾');
                     }
                 });
             }, { threshold: 0.6 });
