@@ -573,6 +573,26 @@ a {
 }
 
 /* Floating hint button — injected by JS on mobile */
+@keyframes hintFade {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(4px);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 .card-float-hint {
     display: none;
 }
@@ -594,7 +614,7 @@ a {
         text-transform: uppercase;
         letter-spacing: 0.06em;
         white-space: nowrap;
-        animation: hintFade 2.5s ease forwards;
+        animation: hintFade 2s ease forwards;
         pointer-events: none;
     }
 }
