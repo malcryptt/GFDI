@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer — GFDI</title>
+    <meta name="description"
+        content="Volunteer with GFDI and help protect vulnerable women and children in Nigeria through field outreach, legal support, counseling, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body>
+    <header class="site-header header-solid" id="site-header"></header>
+
+    <main>
+        <section class="page-hero bg-green text-cream">
+            <div class="container reveal">
+                <h1>Volunteer With Us</h1>
+                <p>On-the-ground advocacy requires people. Join GFDI's growing network of activists and supporters.</p>
+            </div>
+        </section>
+
+        <section class="form-page section-padding">
+            <div class="container">
+                <div class="form-wrapper reveal">
+
+                    <div style="max-width:640px;margin-bottom:3.5rem;">
+                        <h2 style="font-size:1.75rem;margin-bottom:1.25rem;">What Volunteering Involves</h2>
+                        <p>GFDI volunteers work alongside our activists in a range of areas — from direct field outreach
+                            in communities, to providing legal-aid escort for survivors, to handling communications and
+                            fundraising that keeps our work going. All volunteers are onboarded with a briefing on
+                            GFDI's mission, safeguarding policies, and the communities we serve. You set your own
+                            availability.</p>
+                        <p>If you have questions before applying, feel free to <a href="/contact.html"
+                                style="font-weight:600;text-decoration:underline;">contact us first</a>.</p>
+                    </div>
+
+                    <div class="form-success" id="form-success">
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--c-green-dark)"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="9 12 11 14 15 10" />
+                        </svg>
+                        <h3>Application Received</h3>
+                        <p>Thank you for offering to volunteer with GFDI. A member of our team will review your
+                            application and be in touch shortly.</p>
+                    </div>
+
+                    <form id="volunteer-form" novalidate>
+                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+                        <input type="hidden" name="subject" value="[GFDI] Volunteer Application">
+                        <input type="hidden" name="from_name" value="GFDI Volunteer Form">
+
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+                            <div class="form-group">
+                                <label for="vol-firstname">First name <span style="color:#a83232;">*</span></label>
+                                <input type="text" id="vol-firstname" name="first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="vol-lastname">Last name <span style="color:#a83232;">*</span></label>
+                                <input type="text" id="vol-lastname" name="last_name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vol-email">Email address <span style="color:#a83232;">*</span></label>
+                            <input type="email" id="vol-email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vol-phone">Phone number <span class="optional">(optional)</span></label>
+                            <input type="tel" id="vol-phone" name="phone" placeholder="e.g. 080 555 00000">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Area(s) of interest <span style="color:#a83232;">*</span></label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item"><input type="checkbox" name="area_field_outreach"
+                                        value="yes"> Field outreach</label>
+                                <label class="checkbox-item"><input type="checkbox" name="area_admin" value="yes"> Admin
+                                    support</label>
+                                <label class="checkbox-item"><input type="checkbox" name="area_legal" value="yes">
+                                    Legal-aid escort</label>
+                                <label class="checkbox-item"><input type="checkbox" name="area_counseling" value="yes">
+                                    Counseling support</label>
+                                <label class="checkbox-item"><input type="checkbox" name="area_comms" value="yes">
+                                    Communications &amp; social media</label>
+                                <label class="checkbox-item"><input type="checkbox" name="area_fundraising" value="yes">
+                                    Fundraising</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vol-availability">Availability</label>
+                            <select id="vol-availability" name="availability">
+                                <option value="" disabled selected>Select one</option>
+                                <option>Weekdays (daytime)</option>
+                                <option>Weekdays (evenings)</option>
+                                <option>Weekends</option>
+                                <option>Flexible / as needed</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vol-why">Why would you like to volunteer with GFDI? <span
+                                    style="color:#a83232;">*</span></label>
+                            <textarea id="vol-why" name="why_volunteer" rows="5" required
+                                placeholder="Tell us a little about your motivation and any relevant experience or skills you'd bring."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vol-cv">CV / Résumé <span class="optional">(optional)</span></label>
+                            <input type="file" id="vol-cv" name="cv" accept=".pdf,.doc,.docx">
+                            <p style="font-size:.85rem;opacity:.6;margin-top:.4rem;">PDF, DOC, or DOCX. Max 5MB.</p>
+                        </div>
+
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-dark">Submit Application</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="site-footer"></footer>
+    <script type="module">
+        import { renderHeader, renderFooter, initScrollReveal } from '/src/components.js';
+        renderHeader('volunteer');
+        renderFooter();
+        initScrollReveal();
+
+        const form = document.getElementById('volunteer-form');
+        const success = document.getElementById('form-success');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const submit = form.querySelector('[type="submit"]');
+            submit.textContent = 'Sending…';
+            submit.disabled = true;
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+                const json = await res.json();
+                if (json.success) {
+                    form.style.display = 'none';
+                    success.classList.add('show');
+                } else {
+                    alert('There was a problem submitting your application. Please try again or email info@gfdinitiative.org');
+                    submit.textContent = 'Submit Application';
+                    submit.disabled = false;
+                }
+            } catch {
+                alert('Could not connect. Please check your connection or email info@gfdinitiative.org');
+                submit.textContent = 'Submit Application';
+                submit.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

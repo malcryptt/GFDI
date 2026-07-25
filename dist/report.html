@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Case — GFDI</title>
+    <meta name="description"
+        content="Submit a confidential report to GFDI about FGM, child labour, trafficking, abuse, or gender-based violence. Anonymous reports are accepted and reviewed privately.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+  <script type="module" crossorigin src="/assets/report-B_iOoTvW.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/components-CWmuZ3kF.js">
+  <link rel="stylesheet" crossorigin href="/assets/components-WExQwA4r.css">
+</head>
+
+<body>
+    <header class="site-header header-solid" id="site-header"></header>
+
+    <main>
+        <section class="page-hero bg-green text-cream">
+            <div class="container reveal">
+                <h1>Report a Case</h1>
+                <p>Your report is received by GFDI's team privately. You do not need to provide your name.</p>
+            </div>
+        </section>
+
+        <section class="form-page section-padding">
+            <div class="container">
+                <div class="form-wrapper reveal">
+
+                    <!-- URGENT NOTICE -->
+                    <div class="form-notice notice-urgent">
+                        <strong>If you or someone else is in immediate danger, do not wait.</strong>
+                        Call emergency services or see our <a href="/resources.html">Emergency Resources</a> page for
+                        hotline numbers. Come back here once you are safe.
+                    </div>
+
+                    <!-- CONFIDENTIALITY -->
+                    <div class="form-notice">
+                        <strong>Confidentiality:</strong> All reports are reviewed only by GFDI's activists and legal
+                        team. Your submission is handled privately and will not be shared with any third party without
+                        your explicit consent. Anonymous reports are fully accepted and will be reviewed.
+                    </div>
+
+                    <!-- SUCCESS STATE -->
+                    <div class="form-success" id="form-success">
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--c-green-dark)"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="9 12 11 14 15 10" />
+                        </svg>
+                        <h3>Report Received</h3>
+                        <p>Thank you for trusting GFDI with this report. A member of our team will review it and, if you
+                            provided contact details, we will reach out. If you are in a safe situation, please also
+                            check our <a href="/resources.html">resources page</a> for additional support.</p>
+                    </div>
+
+                    <!-- FORM -->
+                    <form id="report-form" novalidate>
+                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+                        <input type="hidden" name="subject" value="[GFDI] New Case Report">
+                        <input type="hidden" name="from_name" value="GFDI Report Form">
+
+                        <div class="form-group">
+                            <label for="what-happened">What happened <span
+                                    style="color:#a83232;font-size:1rem;">*</span></label>
+                            <textarea id="what-happened" name="what_happened" rows="6" required
+                                placeholder="Please describe what happened in as much or as little detail as you are comfortable sharing."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="when">When did it happen <span class="optional">(optional)</span></label>
+                            <input type="text" id="when" name="when_it_happened"
+                                placeholder="e.g. last week, June 2025, approximately 3 months ago">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location <span class="optional">(optional)</span></label>
+                            <input type="text" id="location" name="location"
+                                placeholder="e.g. city, state, or general area — you do not need to give an exact address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="who-involved">Who is involved <span class="optional">(optional)</span></label>
+                            <textarea id="who-involved" name="who_involved" rows="3"
+                                placeholder="You can describe the people involved without giving real names. For example: 'a family member', 'a school teacher', etc."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="urgency">Urgency level</label>
+                            <select id="urgency" name="urgency_level">
+                                <option value="" disabled selected>Select one</option>
+                                <option value="ongoing_emergency">Ongoing emergency — this is happening now</option>
+                                <option value="recent">Recent — happened within the past few weeks</option>
+                                <option value="historical">Historical — happened in the past</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="relationship">Your relationship to this case</label>
+                            <select id="relationship" name="reporter_relationship">
+                                <option value="" disabled selected>Select one</option>
+                                <option value="survivor">Survivor — this happened to me</option>
+                                <option value="witness">Witness — I saw or know of this directly</option>
+                                <option value="third_party">Third party — I heard about this and want to report it
+                                </option>
+                                <option value="prefer_not">Prefer not to say</option>
+                            </select>
+                        </div>
+
+                        <hr class="form-divider">
+                        <p style="font-size:.95rem;opacity:.7;margin-bottom:2rem;">The fields below are entirely
+                            optional. You may submit this report without providing any contact information.</p>
+
+                        <div class="form-group">
+                            <label for="reporter-name">Your name <span class="optional">(optional)</span></label>
+                            <input type="text" id="reporter-name" name="reporter_name"
+                                placeholder="Leave blank to submit anonymously">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reporter-phone">Phone number <span class="optional">(optional)</span></label>
+                            <input type="tel" id="reporter-phone" name="reporter_phone"
+                                placeholder="e.g. 080 555 00000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reporter-email">Email address <span class="optional">(optional)</span></label>
+                            <input type="email" id="reporter-email" name="reporter_email"
+                                placeholder="e.g. yourname@email.com">
+                        </div>
+
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-dark">Submit Report</button>
+                            <small>Submitted reports go directly and securely to GFDI's team. They are never posted
+                                publicly.</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="site-footer"></footer>
+</body>
+
+</html>
