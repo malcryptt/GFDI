@@ -4,14 +4,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources & Hotlines — GFDI</title>
+    <title>Resources &amp; Hotlines — GFDI</title>
     <meta name="description"
         content="Emergency hotlines and informational resources regarding domestic abuse, FGM, human trafficking, and child labour in Nigeria.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-  <script type="module" crossorigin src="/assets/resources-BGZN_PpD.js"></script>
+    <style>
+        /* ── State Finder Widget ── */
+        .state-finder {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .state-finder h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--c-green-dark, #1e5037);
+            margin-bottom: 1rem;
+        }
+
+        .state-search-wrapper {
+            position: relative;
+        }
+
+        #state-search {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid rgba(0, 0, 0, 0.15);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        #state-search:focus {
+            border-color: var(--c-green-dark, #1e5037);
+        }
+
+        #state-dropdown {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1.5px solid rgba(0, 0, 0, 0.12);
+            border-radius: 6px;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 50;
+            display: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #state-dropdown.open {
+            display: block;
+        }
+
+        .state-option {
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.15s;
+        }
+
+        .state-option:hover,
+        .state-option.highlighted {
+            background: #f0f7f3;
+        }
+
+        /* Result card */
+        #hotline-result {
+            margin-top: 1.5rem;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #hotline-result.visible {
+            display: flex;
+        }
+
+        .hotline-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: #f8faf9;
+            border-left: 4px solid var(--c-green-dark, #1e5037);
+            border-radius: 0 6px 6px 0;
+            padding: 1rem 1.25rem;
+        }
+
+        .hotline-card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--c-green-dark, #1e5037);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .hotline-card-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--c-green-dark, #1e5037);
+            margin-bottom: 0.2rem;
+        }
+
+        .hotline-card-number {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #111;
+            line-height: 1.2;
+        }
+
+        .hotline-card-number a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .hotline-card-number a:hover {
+            text-decoration: underline;
+        }
+
+        .hotline-card-desc {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 0.25rem;
+        }
+
+        .naptip-note {
+            background: rgba(30, 80, 55, 0.06);
+            border-radius: 6px;
+            padding: 0.9rem 1.1rem;
+            font-size: 0.85rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .naptip-note strong {
+            color: var(--c-green-dark, #1e5037);
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/resources-BZc6avSS.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/components-DbTDIltN.js">
   <link rel="stylesheet" crossorigin href="/assets/components-CFxJF2z7.css">
 </head>
@@ -41,8 +190,8 @@
 
                 <h3 style="margin:3rem 0 1.5rem;font-size:1.75rem;">Important Hotlines</h3>
 
+                <!-- Always-visible national lines -->
                 <ul class="resources-list">
-                    <!-- PLACEHOLDERS -->
                     <li class="resource-item">
                         <div class="resource-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -55,7 +204,7 @@
                         </div>
                         <div>
                             <div class="resource-label">National Emergency Number</div>
-                            <div class="resource-number">112</div>
+                            <div class="resource-number"><a href="tel:112">112</a></div>
                             <div class="resource-desc">General emergency (Police, Fire, Ambulance). Toll-free across
                                 Nigeria.</div>
                         </div>
@@ -69,10 +218,12 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="resource-label">NAPTIP (Trafficking & Abuse)</div>
-                            <div class="resource-number">0800 CALL NAPTIP</div>
+                            <div class="resource-label">NAPTIP — National Toll-Free (Trafficking &amp; VAPP)</div>
+                            <div class="resource-number"><a href="tel:08007225586">0800 CALL NAPTIP</a> &nbsp;·&nbsp;
+                                Short code: <a href="tel:627">627</a></div>
                             <div class="resource-desc">National Agency for the Prohibition of Trafficking in Persons.
-                                (Placeholder number format — supply direct hotline if different).</div>
+                                Covers trafficking, exploitation, and VAPP Act violations nationwide. Available 24/7.
+                            </div>
                         </div>
                     </li>
                     <li class="resource-item">
@@ -80,21 +231,33 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M12 16v-4"></path>
-                                <path d="M12 8h.01"></path>
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
                         </div>
                         <div>
-                            <div class="resource-label">Domestic Violence Hotline (State Level)</div>
-                            <div class="resource-number">[Number Pending]</div>
-                            <div class="resource-desc">Placeholder state-level domestic and sexual violence response
-                                team number.</div>
+                            <div class="resource-label">Federal Govt — Violence Against Women &amp; Girls (Toll-Free)
+                            </div>
+                            <div class="resource-number"><a href="tel:080072732255">0800 72 73 2255</a></div>
+                            <div class="resource-desc">Federal government dedicated GBV helpline. Toll-free, available
+                                nationwide.</div>
                         </div>
                     </li>
                 </ul>
-                <p style="font-size:.85rem;opacity:.6;margin-top:2rem;text-align:center;">[Note: Please verify and
-                    supply the accurate regional hotlines to replace these placeholders.]</p>
+
+                <!-- State Finder -->
+                <h3 style="margin:3rem 0 0.5rem;font-size:1.4rem;">Find Your State Hotline</h3>
+                <p style="font-size:0.9rem;opacity:0.7;margin-bottom:1.5rem;">Type or select your state to see the
+                    dedicated response line.</p>
+
+                <div class="state-finder">
+                    <h4>Select Your State</h4>
+                    <div class="state-search-wrapper">
+                        <input type="text" id="state-search" placeholder="Search state e.g. Lagos, Kano…"
+                            autocomplete="off" aria-label="Search Nigerian state">
+                        <div id="state-dropdown" role="listbox" aria-label="Nigerian states"></div>
+                    </div>
+                    <div id="hotline-result" role="region" aria-live="polite"></div>
+                </div>
 
                 <hr class="form-divider" style="margin-top:4rem;">
 
