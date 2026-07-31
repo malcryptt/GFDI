@@ -453,6 +453,8 @@ a {
     background-color: var(--c-green-dark);
     color: var(--c-cream);
     padding: 7rem 0 5rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .page-hero h1 {
@@ -464,6 +466,45 @@ a {
     font-size: 1.2rem;
     opacity: 0.85;
     max-width: 600px;
+}
+
+/* Split-fade image hero variant */
+.page-hero-img {
+    min-height: 320px;
+}
+
+.page-hero-img .page-hero-photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 52%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.page-hero-img .page-hero-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--c-green-dark) 40%, transparent 100%);
+    z-index: 1;
+}
+
+.page-hero-img .container {
+    position: relative;
+    z-index: 2;
+    max-width: 55%;
+}
+
+@media (max-width: 768px) {
+    .page-hero-img .page-hero-photo {
+        display: none;
+    }
+
+    .page-hero-img .container {
+        max-width: 100%;
+    }
 }
 
 /* =====================
