@@ -48,8 +48,7 @@ export function renderHeader(active = '') {
     el.innerHTML = `
     <div class="container header-inner">
         <a href="/index.html" class="brand">
-            ${LOGO_SVG}
-            <div class="brand-text"><span class="brand-name">GFDI</span></div>
+            <img src="/assets/gfdi-logo.png" alt="GFDI" style="height:42px;width:auto;">
         </a>
         <nav class="nav-links">
             ${navLinks}
@@ -83,20 +82,7 @@ export function renderFooter() {
     <div class="container footer-inner reveal">
         <div class="footer-brand">
             <div class="footer-logo">
-                <svg viewBox="0 0 100 100" class="logo-svg footer-svg" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="48" fill="none" stroke="var(--c-cream)" stroke-width="2"/>
-                    <path d="M22 72 Q36 67 50 72 Q64 67 78 72 L78 76 Q64 71 50 76 Q36 71 22 76 Z" fill="var(--c-cream)"/>
-                    <path d="M50 74 v-3" stroke="var(--c-green)" stroke-width="1.5"/>
-                    <circle cx="50" cy="28" r="4" fill="var(--c-cream)"/><circle cx="50" cy="40" r="3.5" fill="var(--c-cream)"/>
-                    <circle cx="50" cy="50" r="3" fill="var(--c-cream)"/><circle cx="50" cy="58" r="2.5" fill="var(--c-cream)"/>
-                    <circle cx="43" cy="33" r="3" fill="var(--c-cream)"/><circle cx="36" cy="38" r="2" fill="var(--c-cream)"/>
-                    <circle cx="57" cy="33" r="3" fill="var(--c-cream)"/><circle cx="64" cy="38" r="2" fill="var(--c-cream)"/>
-                    <circle cx="30" cy="45" r="3" fill="var(--c-cream)"/><circle cx="30" cy="55" r="2" fill="var(--c-cream)"/>
-                    <circle cx="30" cy="62" r="1.5" fill="var(--c-cream)"/>
-                    <circle cx="70" cy="45" r="3" fill="var(--c-cream)"/><circle cx="70" cy="55" r="2" fill="var(--c-cream)"/>
-                    <circle cx="70" cy="62" r="1.5" fill="var(--c-cream)"/>
-                </svg>
-                <span class="brand-name">GFDI</span>
+                <a href="/index.html"><img src="/assets/gfdi-logo.png" alt="GFDI" style="height:48px;width:auto;filter:brightness(0) invert(1);"></a>
             </div>
             <p class="mission-small">Campaign against female genital mutilation, child labour and human trafficking.</p>
         </div>
