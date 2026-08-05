@@ -12,6 +12,7 @@ export default defineConfig({
                 main: resolve(__dirname, 'index.html'),
                 about: resolve(__dirname, 'about.html'),
                 issues: resolve(__dirname, 'issues.html'),
+                events: resolve(__dirname, 'events.html'),
                 report: resolve(__dirname, 'report.html'),
                 volunteer: resolve(__dirname, 'volunteer.html'),
                 resources: resolve(__dirname, 'resources.html'),

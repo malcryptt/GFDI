@@ -31,6 +31,7 @@ const WA_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
 const NAV_ITEMS = [
     { key: 'about', label: 'About', href: '/about.html' },
     { key: 'issues', label: 'The Issues', href: '/issues.html' },
+    { key: 'events', label: 'Events', href: '/events.html' },
     { key: 'volunteer', label: 'Volunteer', href: '/volunteer.html' },
     { key: 'resources', label: 'Resources', href: '/resources.html' },
     { key: 'contact', label: 'Contact', href: '/contact.html' },

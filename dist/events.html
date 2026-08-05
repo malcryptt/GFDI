@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events &amp; Activities &mdash; GFDI</title>
+    <meta name="description"
+        content="Stay up to date with GFDI latest events, community outreach programmes, advocacy campaigns, and activities across Nigeria.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        .events-filter {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.45rem 1.25rem;
+            border: 1.5px solid var(--c-green);
+            background: transparent;
+            color: var(--c-green);
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--c-green);
+            color: var(--c-cream);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: #fff;
+            border: 1px solid rgba(20, 70, 35, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.25s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-media {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            background: var(--c-green-dark);
+        }
+
+        .event-media-video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: block;
+            background: #000;
+        }
+
+        .event-media-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, var(--c-green-dark) 0%, var(--c-green) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .event-media-placeholder svg {
+            opacity: 0.25;
+        }
+
+        .event-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .event-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--c-cream);
+            background: var(--c-green);
+            padding: 0.25rem 0.6rem;
+            border-radius: 2px;
+        }
+
+        .event-date {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .event-location {
+            font-size: 0.8rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .event-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--c-green-dark);
+            margin: 0 0 0.75rem;
+            line-height: 1.35;
+        }
+
+        .event-desc {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .event-readmore {
+            margin-top: 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--c-green);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            border-bottom: 1.5px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .event-readmore:hover {
+            border-color: var(--c-green);
+        }
+
+        .event-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 25, 15, 0.75);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+        }
+
+        .event-modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .event-modal {
+            background: #fff;
+            border-radius: 6px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: transform 0.25s;
+        }
+
+        .event-modal-overlay.open .event-modal {
+            transform: translateY(0);
+        }
+
+        .event-modal-header {
+            position: relative;
+        }
+
+        .event-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .event-modal-body {
+            padding: 2rem;
+        }
+
+        .event-modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--c-green-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-modal-desc {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #444;
+            margin-top: 1.25rem;
+        }
+
+        .no-events {
+            text-align: center;
+            padding: 5rem 1rem;
+            color: #aaa;
+            grid-column: 1 / -1;
+        }
+
+        .no-events svg {
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 600px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/events-CKkFGeQj.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/components-wENJOJ0G.js">
+  <link rel="stylesheet" crossorigin href="/assets/components-P-FCmOtv.css">
+</head>
+
+<body>
+    <header class="site-header header-solid" id="site-header"></header>
+
+    <main>
+        <section class="page-hero page-hero-img bg-green text-cream">
+            <div class="page-hero-photo"
+                style="background-image: url('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=1400&auto=format&fit=crop');">
+            </div>
+            <div class="page-hero-fade"></div>
+            <div class="container reveal">
+                <h1>Events &amp; Activities</h1>
+                <p>Follow GFDI on the ground &mdash; community outreach, advocacy campaigns, workshops, and more.</p>
+            </div>
+        </section>
+
+        <section class="section-padding bg-cream text-charcoal" id="events-section">
+            <div class="container">
+                <div class="events-filter reveal" id="filter-bar">
+                    <button class="filter-btn active" data-filter="all">All Events</button>
+                    <button class="filter-btn" data-filter="outreach">Outreach</button>
+                    <button class="filter-btn" data-filter="advocacy">Advocacy</button>
+                    <button class="filter-btn" data-filter="workshop">Workshop</button>
+                    <button class="filter-btn" data-filter="awareness">Awareness</button>
+                </div>
+                <div class="events-grid reveal" id="events-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <div class="event-modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Event detail">
+        <div class="event-modal" id="modal-box">
+            <div class="event-modal-header" id="modal-media-area"></div>
+            <button class="event-modal-close" id="modal-close" aria-label="Close">&times;</button>
+            <div class="event-modal-body">
+                <div class="event-meta" id="modal-meta"></div>
+                <h2 class="event-modal-title" id="modal-title"></h2>
+                <p class="event-modal-desc" id="modal-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer" id="site-footer"></footer>
+
+</body>
+
+</html>
