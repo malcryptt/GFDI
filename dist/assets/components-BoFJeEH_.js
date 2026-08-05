@@ -33,7 +33,7 @@
         <div class="footer-links">
             <h4>Contact Details</h4>
             <ul>
-                <li><a href="mailto:info@gfdinitiative.org">info@gfdinitiative.org</a></li>
+                <li><a href="mailto:info@gfdi.org.ng">info@gfdi.org.ng</a><br><a href="mailto:info@gfdi.com.ng" style="margin-top: 0.3rem; display: inline-block;">info@gfdi.com.ng</a></li>
                 <li><a href="tel:+2348055555336">080 555 55336</a></li>
                 <li style="margin-top:.75rem">
                     <a href="https://wa.me/2348055555336" target="_blank" rel="noopener"
