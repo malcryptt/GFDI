@@ -14,7 +14,6 @@ export default defineConfig({
                 issues: resolve(__dirname, 'issues.html'),
                 report: resolve(__dirname, 'report.html'),
                 volunteer: resolve(__dirname, 'volunteer.html'),
-                partners: resolve(__dirname, 'partners.html'),
                 resources: resolve(__dirname, 'resources.html'),
                 contact: resolve(__dirname, 'contact.html'),
             }

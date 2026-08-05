@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer — GFDI</title>
+    <title>Get Involved — GFDI</title>
     <meta name="description"
-        content="Volunteer with GFDI and help protect vulnerable women and children in Nigeria through field outreach, legal support, counseling, and more.">
+        content="Volunteer or partner with GFDI to help protect vulnerable women and children in Nigeria through field outreach, legal support, funding, and collaboration.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-  <script type="module" crossorigin src="/assets/volunteer-CVV1OKJ8.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/components-4ZvVop8C.js">
+  <script type="module" crossorigin src="/assets/volunteer-BAsiNGd7.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/components-bnEjmTlk.js">
   <link rel="stylesheet" crossorigin href="/assets/components-P-FCmOtv.css">
 </head>
 
@@ -26,8 +26,9 @@
             </div>
             <div class="page-hero-fade"></div>
             <div class="container reveal">
-                <h1>Volunteer With Us</h1>
-                <p>On-the-ground advocacy requires people. Join GFDI's growing network of activists and supporters.</p>
+                <h1>Get Involved</h1>
+                <p>On-the-ground advocacy requires people and partnerships. Join GFDI's network by volunteering your
+                    time or collaborating as an institutional partner.</p>
             </div>
         </section>
 
@@ -122,6 +123,78 @@
 
                         <div class="form-submit">
                             <button type="submit" class="btn btn-dark">Submit Application</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="section-padding bg-charcoal text-cream" id="partner-section">
+            <div class="container">
+                <div class="form-wrapper reveal" style="color:var(--c-cream);">
+                    <h2 style="font-size:clamp(1.75rem,3vw,2.75rem);margin-bottom:1.25rem;">Become a Partner</h2>
+                    <div class="line-accent" style="background-color:var(--c-green);"></div>
+                    <p style="opacity:.8;margin-bottom:3rem;margin-top:1.5rem;">Whether you're a funding body, an NGO, a
+                        university, or a business that believes in our mission — we'd like to hear from you. Use this
+                        form to inquire about institutional collaborations.</p>
+
+                    <div class="form-success" id="partner-success">
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--c-green)"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="9 12 11 14 15 10" />
+                        </svg>
+                        <h3>Inquiry Received</h3>
+                        <p style="opacity:.75;">Thank you for reaching out. A member of GFDI's team will be in touch
+                            shortly.</p>
+                    </div>
+
+                    <form id="partner-form" novalidate>
+                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+                        <input type="hidden" name="subject" value="[GFDI] Partnership Inquiry">
+                        <input type="hidden" name="from_name" value="GFDI Partner Form">
+
+                        <div class="form-group">
+                            <label for="org-name" style="color:var(--c-cream);">Organization name <span
+                                    style="color:#e88;">*</span></label>
+                            <input type="text" id="org-name" name="organization" required>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+                            <div class="form-group">
+                                <label for="contact-name" style="color:var(--c-cream);">Contact person <span
+                                        style="color:#e88;">*</span></label>
+                                <input type="text" id="contact-name" name="contact_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email" style="color:var(--c-cream);">Email address <span
+                                        style="color:#e88;">*</span></label>
+                                <input type="email" id="contact-email" name="contact_email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="partner-type" style="color:var(--c-cream);">Type of partnership interested
+                                in</label>
+                            <select id="partner-type" name="partnership_type">
+                                <option value="" disabled selected>Select one</option>
+                                <option>Funding / Grant support</option>
+                                <option>Community outreach collaboration</option>
+                                <option>Legal / Institutional support</option>
+                                <option>Research &amp; Documentation</option>
+                                <option>Communications &amp; Media</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="partner-message" style="color:var(--c-cream);">Message <span
+                                    style="color:#e88;">*</span></label>
+                            <textarea id="partner-message" name="message" rows="5" required
+                                placeholder="Tell us about your organization and how you'd like to collaborate."></textarea>
+                        </div>
+
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-solid">Send Inquiry</button>
                         </div>
                     </form>
                 </div>
