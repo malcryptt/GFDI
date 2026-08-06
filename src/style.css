@@ -834,6 +834,26 @@ a {
         width: 100%;
         aspect-ratio: 16/9;
     }
+
+    /* Fixed mobile expanded view layout */
+    .team-card.expanded .team-card-visible {
+        flex-direction: row;
+        align-items: flex-start;
+        padding-top: 1rem;
+    }
+
+    .team-card.expanded .team-photo-wrapper {
+        width: 100px;
+        /* profile alongside picture */
+        aspect-ratio: auto;
+        height: auto;
+        border-radius: 4px;
+        margin-left: 1rem;
+    }
+
+    .team-card.expanded .team-photo-wrapper img {
+        border-radius: 4px;
+    }
 }
 
 /* Hover overlay (disabled since card expands on hover directly) */
