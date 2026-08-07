@@ -179,7 +179,9 @@
 
             pCard.addEventListener('click', () => {
                 if (isMobile()) {
-                    pCard.classList.toggle('expanded');
+                    const isExpanded = pCard.classList.toggle('expanded');
+                    document.body.style.overflow = isExpanded ? 'hidden' : '';
+                    document.body.classList.toggle('has-expanded-card', isExpanded);
                     const hint = pPhoto.querySelector('.card-float-hint');
                     if (hint) hint.remove();
                 }
@@ -270,12 +272,14 @@
                     card.classList.remove('expanded');
                     card.setAttribute('aria-expanded', 'false');
                     document.body.style.overflow = '';
+                    document.body.classList.remove('has-expanded-card');
                     e.stopPropagation();
                     return;
                 }
                 const isExpanded = card.classList.toggle('expanded');
                 card.setAttribute('aria-expanded', isExpanded);
                 document.body.style.overflow = isExpanded ? 'hidden' : '';
+                document.body.classList.toggle('has-expanded-card', isExpanded);
             });
             card.addEventListener('keydown', e => { if (e.key === 'Enter') card.click(); });
             grid.appendChild(card);

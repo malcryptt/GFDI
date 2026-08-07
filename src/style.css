@@ -1506,3 +1506,8 @@ button:focus-visible {
         padding: 5rem 0;
     }
 }
+/* Fix for fixed positioning inside transform containers on mobile */
+body.has-expanded-card .reveal {
+    transform: none !important;
+    transition: none !important;
+}
