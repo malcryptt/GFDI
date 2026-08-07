@@ -809,6 +809,7 @@ a {
     background: var(--c-charcoal);
     overflow-y: auto;
     transform: none !important;
+    justify-content: flex-start;
     flex: 1 1 100%;
 }
 
