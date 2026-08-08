@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery &mdash; GFDI</title>
+    <meta name="description"
+        content="A visual record of GFDI's community outreach, sensitization programmes, and advocacy events across Ondo State and Nigeria.">
+    <meta name="keywords"
+        content="GFDI events, NGO outreach photos, gender-based violence sensitization, Ondo State NGO, child rights advocacy Nigeria">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        .gallery-hero {
+            background: var(--c-green-dark);
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            color: var(--c-cream);
+        }
+
+        .gallery-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--c-cream);
+        }
+
+        .gallery-hero p {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            background: var(--c-green);
+            color: var(--c-cream);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-section {
+            padding: 4rem 2rem 6rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            columns: 4 220px;
+            column-gap: 1rem;
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            display: block;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            border-radius: 4px;
+            transition: transform 0.35s ease, filter 0.35s ease;
+            filter: brightness(0.95);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+            filter: brightness(0.75);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-overlay svg {
+            width: 36px;
+            height: 36px;
+            stroke: #fff;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox-inner {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lightbox img {
+            max-width: 80vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .lightbox-btn {
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+
+        .lightbox-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -3rem;
+            right: 0;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.25rem;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--c-green);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            margin-bottom: 2.5rem;
+            transition: gap 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 0.6rem;
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                columns: 2 140px;
+            }
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/gallery-CACgh8gN.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/components-BiQmHShg.js">
+  <link rel="stylesheet" crossorigin href="/assets/components-RMT3GAvq.css">
+</head>
+
+<body>
+    <header class="site-header" id="site-header"></header>
+
+    <div class="gallery-hero">
+        <span class="gallery-tag">Photo Gallery</span>
+        <h1>GFDI in Action</h1>
+        <p>A visual record of our community outreach, sensitization programmes, and advocacy activities across Ondo
+            State.</p>
+    </div>
+
+    <section class="gallery-section">
+        <a href="/events.html" class="back-link">&#8592; Back to Events</a>
+        <div class="gallery-grid" id="gallery-grid"></div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <div class="lightbox-inner">
+            <button class="lightbox-btn" id="lb-prev" aria-label="Previous photo">&#8592;</button>
+            <div style="position:relative;">
+                <button class="lightbox-close" id="lb-close" aria-label="Close">&times;</button>
+                <img id="lb-img" src="" alt="Gallery photo">
+                <span class="lightbox-counter" id="lb-counter"></span>
+            </div>
+            <button class="lightbox-btn" id="lb-next" aria-label="Next photo">&#8594;</button>
+        </div>
+    </div>
+
+    <footer class="site-footer" id="site-footer"></footer>
+
+</body>
+
+</html>

@@ -17,6 +17,7 @@ export default defineConfig({
                 volunteer: resolve(__dirname, 'volunteer.html'),
                 resources: resolve(__dirname, 'resources.html'),
                 contact: resolve(__dirname, 'contact.html'),
+                gallery: resolve(__dirname, 'gallery.html'),
             }
         }
     }

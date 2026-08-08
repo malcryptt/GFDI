@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery &mdash; GFDI</title>
+    <meta name="description"
+        content="A visual record of GFDI's community outreach, sensitization programmes, and advocacy events across Ondo State and Nigeria.">
+    <meta name="keywords"
+        content="GFDI events, NGO outreach photos, gender-based violence sensitization, Ondo State NGO, child rights advocacy Nigeria">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+    <style>
+        .gallery-hero {
+            background: var(--c-green-dark);
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            color: var(--c-cream);
+        }
+
+        .gallery-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--c-cream);
+        }
+
+        .gallery-hero p {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            background: var(--c-green);
+            color: var(--c-cream);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-section {
+            padding: 4rem 2rem 6rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            columns: 4 220px;
+            column-gap: 1rem;
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            display: block;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            border-radius: 4px;
+            transition: transform 0.35s ease, filter 0.35s ease;
+            filter: brightness(0.95);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+            filter: brightness(0.75);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-overlay svg {
+            width: 36px;
+            height: 36px;
+            stroke: #fff;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox-inner {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lightbox img {
+            max-width: 80vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .lightbox-btn {
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+
+        .lightbox-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -3rem;
+            right: 0;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.25rem;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--c-green);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            margin-bottom: 2.5rem;
+            transition: gap 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 0.6rem;
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                columns: 2 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header" id="site-header"></header>
+
+    <div class="gallery-hero">
+        <span class="gallery-tag">Photo Gallery</span>
+        <h1>GFDI in Action</h1>
+        <p>A visual record of our community outreach, sensitization programmes, and advocacy activities across Ondo
+            State.</p>
+    </div>
+
+    <section class="gallery-section">
+        <a href="/events.html" class="back-link">&#8592; Back to Events</a>
+        <div class="gallery-grid" id="gallery-grid"></div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <div class="lightbox-inner">
+            <button class="lightbox-btn" id="lb-prev" aria-label="Previous photo">&#8592;</button>
+            <div style="position:relative;">
+                <button class="lightbox-close" id="lb-close" aria-label="Close">&times;</button>
+                <img id="lb-img" src="" alt="Gallery photo">
+                <span class="lightbox-counter" id="lb-counter"></span>
+            </div>
+            <button class="lightbox-btn" id="lb-next" aria-label="Next photo">&#8594;</button>
+        </div>
+    </div>
+
+    <footer class="site-footer" id="site-footer"></footer>
+
+    <script type="module">
+        import { renderHeader, renderFooter } from '/src/components.js';
+        renderHeader('events');
+        renderFooter();
+
+        // Cloudinary base with optimization transforms: auto format, auto quality, width 600 for thumbnails
+        function thumb(url) {
+            return url.replace('/image/upload/', '/image/upload/f_auto,q_auto,w_600/');
+        }
+        function full(url) {
+            return url.replace('/image/upload/', '/image/upload/f_auto,q_auto,w_1400/');
+        }
+
+        const PHOTOS = [
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174899/DSC_5015.JPG_rhfvca.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174884/DSC_5045.JPG_eyujyb.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174803/DSC_5020.JPG_n7belh.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174803/DSC_5007.JPG_k7q7jr.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174790/DSC_5064.JPG_regwq4.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174789/DSC_5055.JPG_ac7dko.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174783/DSC_5271.JPG_xxafyr.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174780/DSC_5080.JPG_obvkfj.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174778/DSC_5287.JPG_xdoop7.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174772/DSC_5073.JPG_gluu19.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174766/DSC_5104.JPG_tu0cuz.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174762/DSC_5083.JPG_q0ayfk.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174759/DSC_5075.JPG_drzj7f.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174749/DSC_5085.JPG_dcthen.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174741/DSC_5133.JPG_u28q1t.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174741/DSC_5114.JPG_kpaksd.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174739/DSC_5112.JPG_tcirxq.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174728/DSC_5142.JPG_plbtk3.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174724/DSC_5127.JPG_zjbooz.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174714/DSC_5159.JPG_ic5yrd.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174714/DSC_5138.JPG_q8nemr.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174702/DSC_5170.JPG_xfvuth.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174688/DSC_5149.JPG_xt6zsx.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174674/DSC_5195.JPG_gmcj1f.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174667/DSC_5181.JPG_otrudn.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174658/DSC_5187.JPG_p3fiqe.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174656/DSC_5184.JPG_a9qund.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174637/DSC_5204.JPG_lsnrcy.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174628/DSC_5200.JPG_tvgnip.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174622/DSC_5202.JPG_vmf3qv.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174621/DSC_5290.JPG_eyoh0m.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174578/DSC_5224.JPG_fpbsdn.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174577/DSC_5240.JPG_hssex3.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174577/DSC_5219.JPG_i7oya6.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174573/DSC_5234.JPG_femxnj.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174554/DSC_5250.JPG_jsttll.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174546/DSC_5262.JPG_qvxwt7.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174542/DSC_5259.JPG_k8rs8u.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174541/DSC_5275.JPG_ezmiyr.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174535/DSC_5285.JPG_ql3d32.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174530/DSC_5283.JPG_aryklj.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174504/WhatsApp_Image_xtaltl.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174504/WhatsApp_Image_newsdirect_guaocg.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174503/WhatsApp_Image_thenation_l8qyvm.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174503/WhatsApp_Image_2026-08-08_at_08.05.23_ttregt.jpg',
+            'https://res.cloudinary.com/yvvlok3z/image/upload/v1786174503/WhatsApp_Image_2026-08-08_at_07.55.08_p2ccym.jpg'
+        ];
+
+        // Render masonry grid
+        var grid = document.getElementById('gallery-grid');
+        var html = '';
+        for (var i = 0; i < PHOTOS.length; i++) {
+            html += '<div class="gallery-item" data-index="' + i + '" tabindex="0" role="button" aria-label="View photo ' + (i + 1) + '">'
+                + '<img src="' + thumb(PHOTOS[i]) + '" alt="GFDI outreach photo ' + (i + 1) + '" loading="lazy">'
+                + '<div class="gallery-item-overlay"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>'
+                + '</div>';
+        }
+        grid.innerHTML = html;
+
+        // Lightbox logic
+        var lb = document.getElementById('lightbox');
+        var lbImg = document.getElementById('lb-img');
+        var lbCounter = document.getElementById('lb-counter');
+        var lbClose = document.getElementById('lb-close');
+        var lbPrev = document.getElementById('lb-prev');
+        var lbNext = document.getElementById('lb-next');
+        var currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lbImg.src = full(PHOTOS[currentIndex]);
+            lbCounter.textContent = (currentIndex + 1) + ' / ' + PHOTOS.length;
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lb.classList.remove('open');
+            document.body.style.overflow = '';
+            lbImg.src = '';
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % PHOTOS.length;
+            lbImg.src = full(PHOTOS[currentIndex]);
+            lbCounter.textContent = (currentIndex + 1) + ' / ' + PHOTOS.length;
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + PHOTOS.length) % PHOTOS.length;
+            lbImg.src = full(PHOTOS[currentIndex]);
+            lbCounter.textContent = (currentIndex + 1) + ' / ' + PHOTOS.length;
+        }
+
+        var items = grid.querySelectorAll('.gallery-item');
+        for (var j = 0; j < items.length; j++) {
+            (function (item) {
+                item.addEventListener('click', function () { openLightbox(parseInt(item.getAttribute('data-index'))); });
+                item.addEventListener('keydown', function (e) { if (e.key === 'Enter') openLightbox(parseInt(item.getAttribute('data-index'))); });
+            })(items[j]);
+        }
+
+        lbClose.addEventListener('click', closeLightbox);
+        lbNext.addEventListener('click', showNext);
+        lbPrev.addEventListener('click', showPrev);
+        lb.addEventListener('click', function (e) { if (e.target === lb) closeLightbox(); });
+        document.addEventListener('keydown', function (e) {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        });
+    </script>
+</body>
+
+</html>
