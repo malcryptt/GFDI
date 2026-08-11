@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /volunteer.html
+Disallow: /contact.html
+Disallow: /report.html
 
-Sitemap: https://gfdi.org.ng/sitemap.xml
+Sitemap: https://www.gfdi.org.ng/sitemap.xml
