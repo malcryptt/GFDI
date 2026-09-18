@@ -4,9 +4,11 @@
 <head>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta charset="UTF-8">
-    <meta name="keywords" content="NGO in Nigeria, NGO in Akure, NGO in Ijapo, NGO in Ondo State, child rights advocacy, women empowerment Nigeria, gender-based violence prevention, FGM eradication, end child labour, human trafficking intervention, human rights advocacy, grassroots organization Nigeria, vulnerable children protection">
+    <meta name="keywords"
+        content="NGO in Nigeria, NGO in Akure, NGO in Ijapo, NGO in Ondo State, child rights advocacy, women empowerment Nigeria, gender-based violence prevention, FGM eradication, end child labour, human trafficking intervention, human rights advocacy, grassroots organization Nigeria, vulnerable children protection">
     <meta property="og:title" content="Gender Frontier Development Initiatives">
-    <meta property="og:description" content="Empowering women, protecting children, and ending human rights violations like FGM and human trafficking in Nigeria.">
+    <meta property="og:description"
+        content="Empowering women, protecting children, and ending human rights violations like FGM and human trafficking in Nigeria.">
     <meta property="og:type" content="website">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resources &amp; Hotlines — GFDI</title>
@@ -165,6 +167,63 @@
         .naptip-note strong {
             color: var(--c-green-dark, #1e5037);
         }
+
+        /* ── Donation Widget ── */
+        .donate-block {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .donate-accounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .donate-card {
+            background: #f8faf9;
+            border-left: 4px solid var(--c-green-dark, #1e5037);
+            border-radius: 0 6px 6px 0;
+            padding: 1.1rem 1.25rem;
+        }
+
+        .donate-card-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--c-green-dark, #1e5037);
+            margin-bottom: 0.6rem;
+        }
+
+        .donate-card-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #333;
+            padding: 0.35rem 0;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+        }
+
+        .donate-card-row:last-child {
+            border-bottom: none;
+        }
+
+        .donate-card-row span:first-child {
+            color: #666;
+        }
+
+        .donate-card-row span:last-child {
+            font-weight: 700;
+            color: #111;
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -264,6 +323,37 @@
                         <div id="state-dropdown" role="listbox" aria-label="Nigerian states"></div>
                     </div>
                     <div id="hotline-result" role="region" aria-live="polite"></div>
+                </div>
+
+                <hr class="form-divider" style="margin-top:4rem;">
+
+                <h3 style="margin:3rem 0 1.5rem;font-size:1.75rem;">Support Our Work</h3>
+
+                <div class="donate-block">
+                    <h4
+                        style="font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--c-green-dark, #1e5037);margin-bottom:0.5rem;">
+                        Donation Account Information</h4>
+                    <p style="font-size:0.9rem;opacity:0.75;margin-bottom:0.5rem;">Your donations help GFDI continue
+                        its work protecting children and empowering women across Nigeria. You can donate directly via
+                        bank transfer using the account details below.</p>
+
+                    <div class="donate-accounts">
+                        <div class="donate-card">
+                            <div class="donate-card-label">Naira Account</div>
+                            <div class="donate-card-row"><span>Account Name</span><span>Gender Frontier Development
+                                    Initiatives</span></div>
+                            <div class="donate-card-row"><span>Account No.</span><span>0076117966</span></div>
+                            <div class="donate-card-row"><span>Bank</span><span>Sterling Bank PLC</span></div>
+                        </div>
+
+                        <div class="donate-card">
+                            <div class="donate-card-label">Domiciliary Account</div>
+                            <div class="donate-card-row"><span>Account Name</span><span>Gender Frontier Development
+                                    Initiatives</span></div>
+                            <div class="donate-card-row"><span>Account No.</span><span>0079240900</span></div>
+                            <div class="donate-card-row"><span>Bank</span><span>Sterling Bank PLC</span></div>
+                        </div>
+                    </div>
                 </div>
 
                 <hr class="form-divider" style="margin-top:4rem;">
