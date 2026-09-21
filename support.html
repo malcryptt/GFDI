@@ -20,60 +20,71 @@
         rel="stylesheet">
     <link rel="stylesheet" href="/src/style.css">
 
-    <!-- Support-page-only compact footer + tighter section gaps -->
+    <!-- Support-page-only: tighter CTA + compact footer -->
     <style>
-        /* Reduce gap between last CTA section and footer */
+        /* Compact the LAST section before footer — the "Thank You" CTA */
         main>section:last-of-type {
-            padding-bottom: 2rem !important;
+            padding-top: 3.5rem !important;
+            padding-bottom: 1.5rem !important;
         }
 
-        /* Compact footer — #id for high specificity to beat style.css */
+        /* Tighter footer — #id + !important to beat style.css */
         #site-footer.site-footer {
             padding: 1.5rem 0 0 !important;
         }
 
         #site-footer .footer-inner {
             gap: 1.5rem !important;
-            margin-bottom: 1rem !important;
+            margin-bottom: 0.75rem !important;
         }
 
         #site-footer .footer-logo {
-            margin-bottom: 0.5rem !important;
+            margin-bottom: 0.4rem !important;
         }
 
         #site-footer .footer-logo img {
-            height: 28px !important;
+            height: 26px !important;
         }
 
         #site-footer .mission-small {
-            font-size: 0.8rem !important;
-            line-height: 1.4 !important;
-            max-width: 260px !important;
+            font-size: 0.78rem !important;
+            line-height: 1.35 !important;
+            max-width: 240px !important;
         }
 
         #site-footer .footer-links h4 {
-            margin-bottom: 0.6rem !important;
-            font-size: 0.75rem !important;
+            margin-bottom: 0.5rem !important;
+            font-size: 0.72rem !important;
         }
 
         #site-footer .footer-links li {
-            margin-bottom: 0.3rem !important;
-            font-size: 0.85rem !important;
+            margin-bottom: 0.2rem !important;
+            font-size: 0.82rem !important;
         }
 
         #site-footer .footer-bottom {
-            padding: 0.75rem 0 !important;
-            font-size: 0.75rem !important;
+            padding: 0.6rem 0 !important;
+            font-size: 0.72rem !important;
+        }
+
+        /* Tighten the paragraph + buttons gap inside the last CTA section */
+        main>section:last-of-type p {
+            margin-bottom: 1.5rem !important;
+        }
+
+        main>section:last-of-type .line-accent {
+            margin: 1rem auto 1.25rem !important;
         }
 
         @media (max-width: 900px) {
             #site-footer .footer-inner {
                 gap: 1rem !important;
-                margin-bottom: 0.75rem !important;
+                margin-bottom: 0.5rem !important;
             }
 
             main>section:last-of-type {
-                padding-bottom: 1.5rem !important;
+                padding-top: 2.5rem !important;
+                padding-bottom: 1rem !important;
             }
         }
     </style>
