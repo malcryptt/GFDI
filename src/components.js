@@ -34,6 +34,7 @@ const NAV_ITEMS = [
     { key: 'events', label: 'Events', href: '/events.html' },
     { key: 'volunteer', label: 'Volunteer', href: '/volunteer.html' },
     { key: 'resources', label: 'Resources', href: '/resources.html' },
+    { key: 'support', label: 'Support', href: '/support.html' },
     { key: 'contact', label: 'Contact', href: '/contact.html' },
 ];
 

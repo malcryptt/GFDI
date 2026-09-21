@@ -4,7 +4,7 @@ import { resolve } from 'path';
 export default defineConfig({
     server: {
         port: 3000,
-        open: true
+        open: true,
     },
     build: {
         rollupOptions: {
@@ -16,9 +16,10 @@ export default defineConfig({
                 report: resolve(__dirname, 'report.html'),
                 volunteer: resolve(__dirname, 'volunteer.html'),
                 resources: resolve(__dirname, 'resources.html'),
+                support: resolve(__dirname, 'support.html'),
                 contact: resolve(__dirname, 'contact.html'),
                 gallery: resolve(__dirname, 'gallery.html'),
-            }
-        }
-    }
+            },
+        },
+    },
 });
