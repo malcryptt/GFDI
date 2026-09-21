@@ -19,6 +19,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/src/style.css">
+
+    <!-- Support-page-only footer size reduction (does not affect other pages) -->
+    <style>
+        .site-footer {
+            padding: 3.5rem 0 0;
+        }
+
+        .site-footer .footer-inner {
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .site-footer .footer-brand .brand-name {
+            font-size: 1.35rem;
+        }
+
+        .site-footer .footer-logo {
+            margin-bottom: 1rem;
+        }
+
+        .site-footer .footer-logo img {
+            height: 36px !important;
+        }
+
+        .site-footer .mission-small {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .site-footer .footer-links h4 {
+            margin-bottom: 1rem;
+        }
+
+        .site-footer .footer-links li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .site-footer .footer-bottom {
+            padding: 1.25rem 0;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .site-footer .footer-inner {
+                gap: 1.75rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -72,6 +121,96 @@
             </div>
         </section>
 
+        <!-- THE NEED / CONTEXT -->
+        <section class="section-padding bg-charcoal text-cream">
+            <div class="container reveal">
+                <div class="text-center" style="max-width: 780px; margin: 0 auto 3rem;">
+                    <h2 class="section-title">The Reality on the Ground</h2>
+                    <div class="line-accent mx-auto" style="background-color: var(--c-green);"></div>
+                    <p class="lead-text" style="margin-top: 1.5rem;">
+                        In Nigeria, millions of women and children face violations that most of the world never sees.
+                        These are not abstract statistics — they are real lives, in real communities, right now.
+                    </p>
+                </div>
+
+                <div class="issues-cards">
+                    <div class="info-block"
+                        style="background: rgba(247, 245, 239, 0.06); border: 1px solid rgba(247, 245, 239, 0.12); color: var(--c-cream);">
+                        <h4 style="color: var(--c-cream);">FGM Still Happens Daily</h4>
+                        <p style="opacity: 0.85;">Despite laws against it, female genital mutilation continues in
+                            communities where tradition outweighs enforcement. Girls as young as infants are cut — many
+                            with no say, no voice, and no recourse.</p>
+                    </div>
+                    <div class="info-block"
+                        style="background: rgba(247, 245, 239, 0.06); border: 1px solid rgba(247, 245, 239, 0.12); color: var(--c-cream);">
+                        <h4 style="color: var(--c-cream);">Children Are Forced to Work</h4>
+                        <p style="opacity: 0.85;">Children are pulled out of classrooms and into farms, markets, mines,
+                            and homes — losing their childhood to labour that robs them of education, safety, and
+                            dignity.</p>
+                    </div>
+                    <div class="info-block"
+                        style="background: rgba(247, 245, 239, 0.06); border: 1px solid rgba(247, 245, 239, 0.12); color: var(--c-cream);">
+                        <h4 style="color: var(--c-cream);">Trafficking Preys on the Vulnerable</h4>
+                        <p style="opacity: 0.85;">Young women and girls are lured with false promises of work or
+                            marriage, then trapped in modern slavery — sometimes across borders, sometimes just down
+                            the road.</p>
+                    </div>
+                </div>
+
+                <p class="text-center" style="margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0.9;">
+                    GFDI exists to push back against all of it. We educate. We intervene. We advocate. We stand with
+                    survivors. And none of that is possible without support from people who care.
+                </p>
+            </div>
+        </section>
+
+        <!-- WHERE YOUR MONEY GOES -->
+        <section class="section-padding bg-cream text-charcoal">
+            <div class="container reveal">
+                <div class="text-center" style="max-width: 780px; margin: 0 auto 3rem;">
+                    <h2 class="section-title">Where Your Donation Goes</h2>
+                    <div class="line-accent mx-auto"></div>
+                    <p class="lead-text" style="margin-top: 1.5rem;">
+                        Every naira is put to work directly in the communities we serve. Here's what your contribution
+                        helps fund.
+                    </p>
+                </div>
+
+                <div class="issues-cards">
+                    <div class="info-block">
+                        <h4>Community Education &amp; Awareness</h4>
+                        <p>Workshops, town halls, and school programmes that teach communities about the harm of FGM,
+                            child labour, and trafficking — and offer alternatives rooted in local culture.</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Direct Intervention &amp; Rescue</h4>
+                        <p>Coordinating with partners to identify at-risk children and women, intervening in crisis
+                            situations, and connecting survivors to safe shelter, medical care, and legal support.</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Legal Advocacy &amp; Case Follow-Up</h4>
+                        <p>Working with legal practitioners to pursue justice for survivors, follow up on reported
+                            cases, and pressure institutions to enforce existing protections.</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Women's Empowerment Initiatives</h4>
+                        <p>Skills training, entrepreneurship support, and micro-grants that give women economic
+                            independence — the surest path out of cycles of abuse.</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Child Protection &amp; Education</h4>
+                        <p>Helping children stay in school, covering fees for the most vulnerable, and providing
+                            supplies and mentorship that keep them off the streets and out of exploitative work.</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Survivor Support Services</h4>
+                        <p>Counselling, rehabilitation, and ongoing case management for survivors — because recovery is
+                            a long road that doesn't end when the rescue does.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- DONATION ACCOUNT DETAILS -->
         <section class="section-padding bg-green text-cream">
             <div class="container reveal">
@@ -79,8 +218,8 @@
                     <h2 class="section-title">Donation Account Information</h2>
                     <div class="line-accent mx-auto" style="background-color: var(--c-cream);"></div>
                     <p class="lead-text" style="margin-top: 1.5rem;">
-                        Your donations help GFDI continue its work protecting children and empowering women across
-                        Nigeria. You can donate directly via bank transfer using the account details below.
+                        You can donate directly via bank transfer using the account details below. Both Naira and
+                        foreign-currency (Domiciliary) accounts are available.
                     </p>
                 </div>
 
@@ -129,36 +268,69 @@
 
                 </div>
 
-                <p class="text-center" style="margin-top: 3rem; font-size: 0.95rem; opacity: 0.85;">
+                <p class="text-center" style="margin-top: 3rem; font-size: 0.95rem; opacity: 0.9;">
                     After making a transfer, please send your donation confirmation to
                     <a href="mailto:info@gfdi.org.ng" style="text-decoration: underline;">info@gfdi.org.ng</a>
-                    so we can acknowledge your gift.
+                    so we can acknowledge your gift and, if you'd like, keep you updated on the impact of your
+                    contribution.
                 </p>
             </div>
         </section>
 
-        <!-- OTHER WAYS TO GIVE -->
+        <!-- TRANSPARENCY & ACCOUNTABILITY -->
         <section class="section-padding bg-cream text-charcoal">
+            <div class="container reveal">
+                <div class="about-grid">
+                    <div class="about-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop');">
+                    </div>
+                    <div class="about-content">
+                        <h2 class="section-title">Transparency &amp; Accountability</h2>
+                        <div class="line-accent"></div>
+                        <p class="lead-text">We believe that trust is earned. Every donation we receive is treated as a
+                            public trust — a mandate to act, not a privilege to hold.</p>
+                        <p>GFDI is committed to full transparency in how funds are used. We document our interventions,
+                            track our outreach, and maintain clear records of every project we run. If you donate, you
+                            have every right to know where your money went and what it accomplished.</p>
+                        <p>If you'd like more details about our projects, our partners, or how specific donations are
+                            allocated, we welcome you to reach out directly. Donors are partners, not ATMs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OTHER WAYS TO GIVE -->
+        <section class="section-padding bg-charcoal text-cream">
             <div class="container reveal">
                 <header class="section-header text-center">
                     <h2 class="section-title">Other Ways to Give</h2>
-                    <div class="line-accent mx-auto"></div>
-                    <p class="section-subtitle">Not able to donate right now? There are still powerful ways to support
-                        our mission.</p>
+                    <div class="line-accent mx-auto" style="background-color: var(--c-green);"></div>
+                    <p class="section-subtitle" style="opacity: 0.85;">Not able to donate right now? There are still
+                        powerful ways to support our mission.</p>
                 </header>
 
                 <div class="issues-cards">
-                    <div class="info-block">
-                        <h4>Volunteer With Us</h4>
-                        <p>Give your time and skills to support our campaigns, outreach, and community development
-                            projects on the ground.</p>
-                        <a href="/volunteer.html" class="btn btn-dark" style="margin-top: 1.5rem;">Get Involved</a>
+                    <div class="info-block"
+                        style="background: rgba(247, 245, 239, 0.06); border: 1px solid rgba(247, 245, 239, 0.12); color: var(--c-cream);">
+                        <h4 style="color: var(--c-cream);">Volunteer With Us</h4>
+                        <p style="opacity: 0.85;">Give your time and skills to support our campaigns, outreach, and
+                            community development projects on the ground.</p>
+                        <a href="/volunteer.html" class="btn btn-solid" style="margin-top: 1.5rem;">Get Involved</a>
                     </div>
-                    <div class="info-block">
-                        <h4>Spread the Word</h4>
-                        <p>Follow, share, and amplify our work on social media and in your community — awareness is a
-                            powerful form of support.</p>
-                        <a href="/contact.html" class="btn btn-dark" style="margin-top: 1.5rem;">Contact Us</a>
+                    <div class="info-block"
+                        style="background: rgba(247, 245, 239, 0.06); border: 1px solid rgba(247, 245, 239, 0.12); color: var(--c-cream);">
+                        <h4 style="color: var(--c-cream);">Spread the Word</h4>
+                        <p style="opacity: 0.85;">Follow, share, and amplify our work on social media and in your
+                            community — awareness is a powerful form of support.</p>
+                        <a href="/contact.html" class="btn btn-solid" style="margin-top: 1.5rem;">Contact Us</a>
+                    </div>
+                    <div class="info-block"
+                        style="background: rgba(247, 245, 239, 0.06); border: 1px solid rgba(247, 245, 239, 0.12); color: var(--c-cream);">
+                        <h4 style="color: var(--c-cream);">Partner With Us</h4>
+                        <p style="opacity: 0.85;">Organizations, businesses, and institutions can partner with GFDI to
+                            fund specific projects or co-run outreach programmes.</p>
+                        <a href="https://wa.me/2348055555336" target="_blank" rel="noopener" class="btn btn-solid"
+                            style="margin-top: 1.5rem;">Reach Out</a>
                     </div>
                 </div>
             </div>
