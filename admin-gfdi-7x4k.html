@@ -420,6 +420,55 @@
         }
         .help-note strong { color: #5d4037; }
 
+        /* ── UPLOAD ── */
+        .upload-drop-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px dashed #ccc;
+            border-radius: var(--radius);
+            background: #fafafa;
+            color: #666;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: border-color 0.2s, background 0.2s;
+            margin-bottom: 0.5rem;
+        }
+        .upload-drop-btn:hover {
+            border-color: var(--c-green);
+            background: #f0faf5;
+            color: var(--c-green-dark);
+        }
+        .upload-drop-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .upload-icon { font-size: 1.1rem; }
+
+        .progress-bar-wrap {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 99px;
+            overflow: hidden;
+            margin-bottom: 0.3rem;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--c-green);
+            border-radius: 99px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .progress-label {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
         @media (max-width: 700px) {
             .event-row { grid-template-columns: 36px 1fr auto; }
             .event-thumb, .event-thumb-placeholder { display: none; }
@@ -527,9 +576,26 @@
                         </div>
 
                         <div id="media-image-fields">
-                            <input class="form-control" id="f-img-src" type="url"
-                                placeholder="Paste image URL (e.g. https://res.cloudinary.com/…)"
-                                oninput="updateImgPreview(this.value)">
+                            <div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
+                                <input class="form-control" id="f-img-src" type="url"
+                                    placeholder="Paste image URL or upload below…"
+                                    oninput="updateImgPreview(this.value)"
+                                    style="flex:1;">
+                            </div>
+                            <!-- UPLOAD BUTTON -->
+                            <div id="upload-area">
+                                <input type="file" id="file-input" accept="image/*" style="display:none" onchange="handleFileUpload(this)">
+                                <button type="button" class="upload-drop-btn" onclick="document.getElementById('file-input').click()" id="upload-btn">
+                                    <span class="upload-icon">☁️</span>
+                                    <span id="upload-btn-label">Upload photo to Cloudinary</span>
+                                </button>
+                                <div id="upload-progress" style="display:none;">
+                                    <div class="progress-bar-wrap">
+                                        <div class="progress-bar-fill" id="progress-fill"></div>
+                                    </div>
+                                    <span class="progress-label" id="progress-label">Uploading…</span>
+                                </div>
+                            </div>
                             <div class="img-preview" id="img-preview">
                                 <div class="img-preview-placeholder">Image preview will appear here</div>
                             </div>
@@ -931,6 +997,78 @@
                 document.body.removeChild(ta);
                 document.getElementById('copy-success').style.display = 'block';
             });
+        }
+
+        // ─── CLOUDINARY UPLOAD ────────────────────────────────────────────────────
+        var CLOUDINARY_CLOUD = 'yvvlok3z';
+        var CLOUDINARY_PRESET = 'gfdi_uploads';
+
+        function handleFileUpload(input) {
+            var file = input.files[0];
+            if (!file) return;
+
+            // size guard — 10 MB
+            if (file.size > 10 * 1024 * 1024) {
+                showToast('Image too large (max 10 MB)', true);
+                input.value = '';
+                return;
+            }
+
+            var btn        = document.getElementById('upload-btn');
+            var label      = document.getElementById('upload-btn-label');
+            var progressEl = document.getElementById('upload-progress');
+            var fillEl     = document.getElementById('progress-fill');
+            var pLabel     = document.getElementById('progress-label');
+
+            btn.disabled = true;
+            label.textContent = 'Uploading…';
+            progressEl.style.display = 'block';
+            fillEl.style.width = '0%';
+            pLabel.textContent = 'Uploading…';
+
+            var formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', CLOUDINARY_PRESET);
+            formData.append('folder', 'gfdi_events');
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD + '/image/upload');
+
+            xhr.upload.onprogress = function(e) {
+                if (e.lengthComputable) {
+                    var pct = Math.round((e.loaded / e.total) * 100);
+                    fillEl.style.width = pct + '%';
+                    pLabel.textContent = pct + '%';
+                }
+            };
+
+            xhr.onload = function() {
+                btn.disabled = false;
+                label.textContent = 'Upload another photo';
+                progressEl.style.display = 'none';
+                input.value = '';
+
+                if (xhr.status === 200) {
+                    var res = JSON.parse(xhr.responseText);
+                    // Use Cloudinary's auto-format + quality URL
+                    var url = res.secure_url.replace('/upload/', '/upload/f_auto,q_auto,w_1200/');
+                    document.getElementById('f-img-src').value = url;
+                    updateImgPreview(url);
+                    showToast('✓ Photo uploaded to Cloudinary!');
+                } else {
+                    showToast('Upload failed — check preset settings', true);
+                }
+            };
+
+            xhr.onerror = function() {
+                btn.disabled = false;
+                label.textContent = 'Upload photo to Cloudinary';
+                progressEl.style.display = 'none';
+                input.value = '';
+                showToast('Network error during upload', true);
+            };
+
+            xhr.send(formData);
         }
 
         // ─── UTILS ───────────────────────────────────────────────────────────────
