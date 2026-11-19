@@ -19,6 +19,7 @@ export default defineConfig({
                 support: resolve(__dirname, 'support.html'),
                 contact: resolve(__dirname, 'contact.html'),
                 gallery: resolve(__dirname, 'gallery.html'),
+                admin: resolve(__dirname, 'admin-gfdi-7x4k.html'),
             },
         },
     },

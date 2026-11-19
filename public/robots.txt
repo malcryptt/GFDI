@@ -3,5 +3,6 @@ Allow: /
 Disallow: /volunteer.html
 Disallow: /contact.html
 Disallow: /report.html
+Disallow: /admin-gfdi-7x4k.html
 
 Sitemap: https://www.gfdi.org.ng/sitemap.xml
